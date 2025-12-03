@@ -82,10 +82,8 @@ body {
     0 0 12px var(--neon-pink),
     0 0 24px var(--neon-pink);
 }
+/*  BUTTONS */
 
-/* ------------------------------ */
-/*  BUTTONS                       */
-/* ------------------------------ */
 
 .btn-primary {
   @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition;
