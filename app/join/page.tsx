@@ -1,4 +1,4 @@
-//  exports/imports
+export default function join() {
     return (
         <div className="body-bg flex items-center justify-center">
             <main className="page-container text-center">
@@ -34,3 +34,4 @@
       </main>
     </div>
     );
+  }

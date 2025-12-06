@@ -1,4 +1,4 @@
-// imports/exports
+export default function create() {
     return (
         <div className="body-bg flex items-center justify-center">
             <main className="page-container text-center">
@@ -41,3 +41,4 @@
         </div>
 
     );
+  }
