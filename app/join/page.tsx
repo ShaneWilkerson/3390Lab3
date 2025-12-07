@@ -12,7 +12,7 @@ export default function join() {
         <div className="card neon-blue-glow p-8 max-w-md mx-auto">
 
           <h2 className="text-xl font-semibold mb-6 text-center">
-            Let's get this party started!
+            Join the party!
           </h2>
 
           {/* Input Field & Join Button */}
