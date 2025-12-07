@@ -1,4 +1,4 @@
-export default function joinerQueue() {
+export default function joinerPage() {
   return (
     <div className="body-bg flex items-center justify-center">
       <main className="page-container text-center">
