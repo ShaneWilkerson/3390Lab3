@@ -30,9 +30,9 @@ export default function join() {
                 className="input-primary mb-6 px-3 py-2 rounded border"
             />
 
-            <button className="btn-primary text-lg px-4 py-2">
+            <a href="/joinerQueue" className="btn-primary text-lg">
                 Join
-            </button>
+            </a>
 
 
           </div>
