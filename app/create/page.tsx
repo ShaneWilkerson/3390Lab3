@@ -1,5 +1,5 @@
 "use client"; 
-// this lets us use react state and event handlers on this page
+// this lets us use react state and event handlers on this page, runs on the broswer, not server
 
 import { useState } from "react";
 
