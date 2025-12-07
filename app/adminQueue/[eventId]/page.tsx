@@ -35,11 +35,11 @@ export default async function AdminQueuePage({ params }: AdminQueueProps) {
       <main className="page-container text-center">
 
         {/* event header */}
-        <h1 className="neon-text text-5xl mb-8">{event.name}</h1>
+        <h1 className="neon-text text-5xl mb-8">PARTY TIME!</h1>
 
         {/* show event name */}
         <div className="card neon-blue-glow p-6 mb-8">
-          <h2 className="text-2xl font-semibold mb-2">{event.name}</h2>
+          <h2 className="text-2xl font-semibold mb-2">Welcome to {event.name}!</h2>
           <p className="text-lg text-slate-300">
             event code: <span className="font-bold">{event.code}</span>
           </p>
