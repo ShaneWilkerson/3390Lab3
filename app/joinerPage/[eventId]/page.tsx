@@ -9,8 +9,12 @@ export default function JoinerPage({ params }: { params: { eventId: string } }) 
 
   // get event id from route folder
   const { eventId } = useParams() as { eventId: string }; 
+
   // will store the event data from supabase
   const [event, setEvent] = useState<any>(null);
+
+  // will store all songs for this event
+  const [songs, setSongs] = useState<any[]>([]); // added this
 
   // store user input for song request
   const [title, setTitle] = useState("");
@@ -19,7 +23,7 @@ export default function JoinerPage({ params }: { params: { eventId: string } }) 
   // store guestId from url
   const [guestId, setGuestId] = useState<string | null>(null);
 
-  // simple loading + message for request feedback
+  // simple loading and message for request feedback
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -39,6 +43,18 @@ export default function JoinerPage({ params }: { params: { eventId: string } }) 
       }
 
       setEvent(data);
+
+      // now load the songs for this event
+      const { data: songData, error: songErr } = await supabase
+        .from("songs")
+        .select("*")
+        .eq("event_id", eventId)
+        .order("created_at", { ascending: true });
+
+      // store songs
+      if (!songErr && songData) {
+        setSongs(songData);
+      }
     }
 
     loadEvent();
@@ -46,7 +62,7 @@ export default function JoinerPage({ params }: { params: { eventId: string } }) 
 
   // read guestId from url when page loads
   useEffect(() => {
-    // this pulls ?guestId=xxxx from the url
+    // this pulls the guest id
     const searchParams = new URLSearchParams(window.location.search);
     const gId = searchParams.get("guestId");
     setGuestId(gId); // save it in state
@@ -87,6 +103,15 @@ export default function JoinerPage({ params }: { params: { eventId: string } }) 
     setMessage("song added!");
     setTitle("");
     setArtist("");
+
+    // reload songs after inserting (so the list updates right away)
+    const { data: newSongs } = await supabase
+      .from("songs")
+      .select("*")
+      .eq("event_id", eventId)
+      .order("created_at", { ascending: true });
+
+    setSongs(newSongs || []);
   }
 
   // show loading page while fetching
@@ -149,6 +174,27 @@ export default function JoinerPage({ params }: { params: { eventId: string } }) 
 
             {message && (
               <p className="text-pink-300">{message}</p>
+            )}
+          </div>
+
+          {/* list of requested songs */}
+          <div className="mt-8 text-left">
+            {songs.length === 0 ? (
+              <p className="text-slate-300 text-center">no songs requested yet!</p>
+            ) : (
+              <ul className="space-y-3">
+                {songs.map((song) => (
+                  <li
+                    key={song.id}
+                    className="bg-slate-900/70 p-3 rounded border border-slate-700"
+                  >
+                    <p className="text-white font-semibold">{song.title}</p>
+                    {song.artist && (
+                      <p className="text-slate-400 text-sm">{song.artist}</p>
+                    )}
+                  </li>
+                ))}
+              </ul>
             )}
           </div>
 
