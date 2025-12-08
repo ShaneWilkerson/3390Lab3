@@ -11,9 +11,12 @@ export default function JoinPage() {
 
   // function that runs when the user clicks join
   async function handleJoin() {
+
     // send the name and event code to db
     const res = await fetch("/api/join-event", {
       method: "POST",
+      headers: { "Content-Type": "application/json" }, 
+      // added this so backend parses json correctly
       body: JSON.stringify({ name, code }),
     });
 
@@ -26,7 +29,8 @@ export default function JoinPage() {
     }
 
     // if everything is good, redirect to joiner page
-    window.location.href = `/joinerPage/${data.eventId}`;
+    // added guestId so joiner page knows who this guest is
+    window.location.href = `/joinerPage/${data.eventId}?guestId=${data.guestId}`;
   }
 
   return (
