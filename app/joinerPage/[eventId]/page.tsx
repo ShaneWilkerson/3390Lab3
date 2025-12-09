@@ -4,6 +4,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";  
 import { supabase } from "@/app/lib/supabaseClient";
+import SongList from "@/app/adminQueue/[eventId]/SongList";
+
 
 export default function JoinerPage({ params }: { params: { eventId: string } }) {
 
@@ -178,25 +180,10 @@ export default function JoinerPage({ params }: { params: { eventId: string } }) 
           </div>
 
           {/* list of requested songs */}
-          <div className="mt-8 text-left">
-            {songs.length === 0 ? (
-              <p className="text-slate-300 text-center">no songs requested yet!</p>
-            ) : (
-              <ul className="space-y-3">
-                {songs.map((song) => (
-                  <li
-                    key={song.id}
-                    className="bg-slate-900/70 p-3 rounded border border-slate-700"
-                  >
-                    <p className="text-white font-semibold">{song.title}</p>
-                    {song.artist && (
-                      <p className="text-slate-400 text-sm">{song.artist}</p>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+          {/* shared song list UI */}
+<div className="mt-8 text-left">
+  <SongList songs={songs} eventId={eventId} guestId={guestId} />
+</div>
 
         </div>
 

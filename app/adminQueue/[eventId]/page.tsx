@@ -66,7 +66,7 @@ export default async function AdminQueuePage({ params }: AdminQueueProps) {
 
           {/* USE SONG LIST COMPONENT NOW */}
           {songList.length > 0 && (
-            <SongList songs={songList} eventId={eventId} />
+            <SongList songs={songList} eventId={eventId} guestId={null} />
           )}
         </div>
 
