@@ -51,7 +51,7 @@ export default function CreatePage() {
         <div className="card neon-blue-glow p-8 max-w-md mx-auto">
 
           <h2 className="text-xl font-semibold mb-6 text-center">
-            let's get this party started!
+            Let's get this party started!
           </h2>
 
           {/* input fields and button */}

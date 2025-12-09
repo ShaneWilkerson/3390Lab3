@@ -21,10 +21,10 @@ export default function HomePage() {
         <div className="card neon-blue-glow p-8 max-w-md mx-auto">
 
           <h2 className="text-xl font-semibold mb-6 text-center">
-            Party Time 
+            Party Time!
           </h2>
 
-          {/* Buttons */}
+          {/* Create/Join Buttons */}
           <div className="flex flex-col gap-4">
             <a href="/create" className="btn-primary text-lg">
               Create Queue

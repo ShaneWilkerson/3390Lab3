@@ -139,6 +139,7 @@ export default function JoinerPage({ params }: { params: { eventId: string } }) 
     <div className="body-bg flex items-center justify-center">
       <main className="page-container text-center">
 
+        {/* Back Button*/}
         <a
             href="/join" 
             className="absolute top-4 left-4 btn-outline textsm"
@@ -154,7 +155,7 @@ export default function JoinerPage({ params }: { params: { eventId: string } }) 
         {/* Song request field and button */}
         <div className="card neon-blue-glow p-8 max-w-md mx-auto">
 
-          {/* Song request field and button */}
+          {/* Song/artist request fields and button */}
           <div className="flex flex-col gap-4">
             
             <input
