@@ -28,8 +28,14 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: error.message }, { status: 400 });
     }
 
-    // this updates event on the frontend
-    return NextResponse.json({ event: data }, { status: 200 });
+    // RETURN THE EVENT and ADMIN URL FOR EASY REJOINING
+    return NextResponse.json(
+      { 
+        event: data,
+        adminUrl: `/adminQueue/${data.id}` 
+      }, 
+      { status: 200 }
+    );
 
   } catch (err) {
     // display errors from server

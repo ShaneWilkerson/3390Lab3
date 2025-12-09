@@ -8,6 +8,9 @@ export default function CreatePage() {
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
 
+  // store admin URL so creator can rejoin if needed
+  const [adminUrl, setAdminUrl] = useState<string | null>(null);
+
   // function that runs for create event button
   async function handleCreate() {
     // sending the name and code to our backend api route
@@ -24,10 +27,13 @@ export default function CreatePage() {
       return;
     }
 
+    // store admin dashboard link in case creator wants to save it
+    setAdminUrl(data.adminUrl);
+
     // this is the uuid of the new event we just made
     const eventId = data.event.id;
 
-    // re route creater to admin queue screen
+    // re route creator to admin queue screen
     window.location.href = `/adminQueue/${eventId}`;
   }
 
@@ -62,8 +68,8 @@ export default function CreatePage() {
               type="text"
               placeholder="enter name of the event"
               className="input-primary mb-4 px-3 py-2 rounded border"
-              value={name} // keeps the input controlled
-              onChange={(e) => setName(e.target.value)} // updates state
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
 
             {/* event code */}
@@ -82,6 +88,16 @@ export default function CreatePage() {
             >
               create
             </button>
+
+            {/* show admin link if it exists */}
+            {adminUrl && (
+              <a 
+                href={adminUrl}
+                className="btn-outline mt-4"
+              >
+                Rejoin Admin Dashboard
+              </a>
+            )}
 
           </div>
         </div>
