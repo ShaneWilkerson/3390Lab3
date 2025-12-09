@@ -1,5 +1,6 @@
-// for asunc and supabase
+// for async and supabase
 import { supabase } from "@/app/lib/supabaseClient";
+import SongList from "./SongList"; // client component for list + remove buttons
 
 // so params.eventId will be a string
 interface AdminQueueProps {
@@ -9,19 +10,19 @@ interface AdminQueueProps {
 }
 
 // this is the main component for the admin queue page
-//  for [eventId] next.js gives us the id through params
+// for [eventId] next.js gives us the id through params
 export default async function AdminQueuePage({ params }: AdminQueueProps) {
-  const { eventId } = await params; 
+  const { eventId } = await params;
   // params must be awaited now THIS IS CRUCIAL
 
-  // get rest of event info using the uuid from the url
+  // get event info using uuid from the url
   const { data: event, error } = await supabase
     .from("events")
     .select("*")
     .eq("id", eventId)
     .single();
 
-  // show error message if event doesnt pop up 
+  // show error message if event doesnt pop up
   if (error || !event) {
     return (
       <div className="body-bg text-center p-10">
@@ -30,15 +31,13 @@ export default async function AdminQueuePage({ params }: AdminQueueProps) {
     );
   }
 
-  // ⭐ NEW: load all songs for this event
-  // this gets every song with matching event_id
+  // load songs for this event
   const { data: songs, error: songError } = await supabase
     .from("songs")
     .select("*")
     .eq("event_id", eventId)
     .order("created_at", { ascending: true });
 
-  // if songs table had an error, keep list empty to avoid crashing
   const songList = songError || !songs ? [] : songs;
 
   return (
@@ -60,23 +59,14 @@ export default async function AdminQueuePage({ params }: AdminQueueProps) {
         <div className="card neon-pink-glow p-6">
           <h3 className="text-xl font-semibold mb-3">song queue</h3>
 
-          {/* ⭐ NEW: if no songs, show message */}
+          {/* if no songs, show message */}
           {songList.length === 0 && (
-            <p className="text-slate-300 text-sm">
-              no songs requested yet!
-            </p>
+            <p className="text-slate-300 text-sm">no songs requested yet!</p>
           )}
 
-          {/* ⭐ NEW: show list of songs */}
+          {/* USE SONG LIST COMPONENT NOW */}
           {songList.length > 0 && (
-            <ul className="text-left space-y-2 mt-3">
-              {songList.map((song) => (
-                <li key={song.id} className="text-pink-300">
-                  {/* title and artist from db */}
-                  {song.title} — {song.artist || "unknown artist"}
-                </li>
-              ))}
-            </ul>
+            <SongList songs={songList} eventId={eventId} />
           )}
         </div>
 
