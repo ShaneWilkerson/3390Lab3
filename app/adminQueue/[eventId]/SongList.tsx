@@ -14,7 +14,6 @@ export default function SongList({
   guestId: string | null;
 }) 
 {
-
   // local state so songs can update live
   const [songList, setSongList] = useState(songs);
 
@@ -22,7 +21,7 @@ export default function SongList({
   function sortSongs(list: any[]) {
     return list.slice().sort((a, b) => {
       if (a.votes !== b.votes) {
-        return b.votes - a.votes; // more votes first
+        return b.votes - a.votes;
       }
       return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
     });
@@ -56,6 +55,7 @@ export default function SongList({
             );
           }
           if (payload.eventType === "DELETE") {
+            // remove instantly
             setSongList(prev => prev.filter(s => s.id !== payload.old.id));
           }
         }
@@ -99,12 +99,16 @@ export default function SongList({
 
   // when admin removes a song
   async function handleRemove(songId: string) {
+
+    // delete from DB
     await fetch("/api/remove-song", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ songId }),
     });
-    // auto update list
+
+    // update UI instantly
+    setSongList(prev => prev.filter((s) => s.id !== songId));
   }
 
 

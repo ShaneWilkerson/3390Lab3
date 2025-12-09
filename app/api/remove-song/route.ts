@@ -6,7 +6,6 @@ export async function POST(req: Request) {
   try {
     const { songId } = await req.json();
 
-    // simple check for missing input
     if (!songId) {
       return NextResponse.json(
         { error: "missing song id" },
@@ -14,7 +13,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // delete the song in supabase
     const { error } = await supabase
       .from("songs")
       .delete()
