@@ -44,13 +44,6 @@ export default async function AdminQueuePage({ params }: AdminQueueProps) {
     <div className="body-bg min-h-screen p-8">
       <main className="page-container text-center">
 
-        <a
-            href="/create" 
-            className="absolute top-4 left-4 btn-outline textsm"
-        >
-            Back
-        </a>
-
         {/* event header */}
         <h1 className="neon-text text-5xl mb-8">PARTY TIME!</h1>
 
@@ -64,11 +57,11 @@ export default async function AdminQueuePage({ params }: AdminQueueProps) {
 
         {/* queue items area */}
         <div className="card neon-pink-glow p-6">
-          <h3 className="text-xl font-semibold mb-3">song queue</h3>
+          <h3 className="text-xl font-semibold mb-3">Song Queue</h3>
 
           {/* if no songs, show message */}
           {songList.length === 0 && (
-            <p className="text-slate-300 text-sm">no songs requested yet!</p>
+            <p className="text-slate-300 text-sm">No Songs Requested Yet!</p>
           )}
 
           {/* USE SONG LIST COMPONENT NOW */}
