@@ -58,7 +58,7 @@ body {
   @apply text-sm text-slate-400;
 }
 
-/* Neon pink glowing */
+/* Neon pink glowing text */
 .neon-text {
   color: var(--neon-pink);
   text-shadow:
@@ -66,6 +66,16 @@ body {
     0 0 16px var(--neon-pink),
     0 0 24px var(--neon-pink);
 }
+
+/* Neon blue glowing text */
+.neon-blue-t {
+  color: var(--neon-blue);
+  text-shadow:
+    0 0 8px var(--neon-blue),
+    0 0 16px var(--neon-blue),
+    0 0 24px var(--neon-blue);
+}
+
 
 /* Neon blue glow for accents on other things */
 .neon-blue-glow {

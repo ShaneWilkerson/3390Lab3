@@ -1,7 +1,16 @@
 export default function HomePage() {
   return (
     <div className="body-bg flex items-center justify-center">
-      <main className="page-container text-center">
+      <main className="page-container text-center relative">
+
+        {/* Learn More Button */}
+        <a 
+          href="/learnMore" 
+          className="absolute bottom-0 right-0 mt-4 mr-4 btn-outline text-sm"
+          style={{ bottom: "-8rem", right: "-6rem"}}
+        >
+          Learn More
+        </a>
 
         {/* Neon Title */}
         <h1 className="text-5xl font-bold mb-10 neon-text tracking-widest">
