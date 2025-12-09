@@ -6,8 +6,8 @@ export default function HomePage() {
         {/* Learn More Button */}
         <a 
           href="/learnMore" 
-          className="absolute bottom-0 right-0 mt-4 mr-4 btn-outline text-sm"
-          style={{ bottom: "-8rem", right: "-6rem"}}
+          className="absolute left-1/2 transform -translate-x-1/2 btn-outline text-sm"
+          style={{ bottom: "-8rem"}}
         >
           Learn More
         </a>
