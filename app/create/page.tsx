@@ -35,6 +35,13 @@ export default function CreatePage() {
     <div className="body-bg flex items-center justify-center">
       <main className="page-container text-center">
 
+        <a
+            href="/" 
+            className="absolute top-4 left-4 btn-outline textsm"
+        >
+            Back
+        </a>
+
         {/* neon title at the top */}
         <h1 className="text-5xl font-bold mb-10 neon-text tracking-widest">
           QUEUEITUP

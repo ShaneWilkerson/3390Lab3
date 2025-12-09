@@ -37,6 +37,13 @@ export default function JoinPage() {
     <div className="body-bg flex items-center justify-center min-h-screen">
       <main className="page-container text-center">
 
+        <a
+            href="/" 
+            className="absolute top-4 left-4 btn-outline textsm"
+        >
+            Back
+        </a>
+
         {/* neon title at top */}
         <h1 className="text-5xl font-bold mb-10 neon-text tracking-widest">
           QUEUEITUP
