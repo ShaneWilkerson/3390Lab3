@@ -44,6 +44,13 @@ export default async function AdminQueuePage({ params }: AdminQueueProps) {
     <div className="body-bg min-h-screen p-8">
       <main className="page-container text-center">
 
+        <a
+            href="/create" 
+            className="absolute top-4 left-4 btn-outline textsm"
+        >
+            Back
+        </a>
+
         {/* event header */}
         <h1 className="neon-text text-5xl mb-8">PARTY TIME!</h1>
 
