@@ -45,15 +45,16 @@ body {
   @apply max-w-3xl mx-auto px-4 py-8;
 }
 
-/* Cards */
+/* Cards, created in classes by using apply by tailwind */
+
 .card {
   @apply bg-slate-900/80 border border-slate-800 rounded-xl p-4 shadow-md;
 }
-
+/*mb is margin */
 .card-title {
   @apply text-lg font-semibold mb-1;
 }
-
+/* slate for light gray*/
 .card-subtitle {
   @apply text-sm text-slate-400;
 }
@@ -62,6 +63,7 @@ body {
 .neon-text {
   color: var(--neon-pink);
   text-shadow:
+  /* blurry shadows on top of each other */
     0 0 8px var(--neon-pink),
     0 0 16px var(--neon-pink),
     0 0 24px var(--neon-pink);

@@ -28,7 +28,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: error.message }, { status: 400 });
     }
 
-    // RETURN THE EVENT and ADMIN URL FOR EASY REJOINING
+    // RETURN THE EVENT and and admin url to join back for creators
     return NextResponse.json(
       { 
         event: data,

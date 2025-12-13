@@ -1,6 +1,6 @@
 // for async and supabase
 import { supabase } from "@/app/lib/supabaseClient";
-import SongList from "./SongList"; // client component for list + remove buttons
+import SongList from "./SongList"; // client component for list and remove buttons
 
 // so params.eventId will be a string
 interface AdminQueueProps {
@@ -22,11 +22,12 @@ export default async function AdminQueuePage({ params }: AdminQueueProps) {
     .eq("id", eventId)
     .single();
 
+
   // show error message if event doesnt pop up
   if (error || !event) {
     return (
       <div className="body-bg text-center p-10">
-        <h1 className="neon-text text-3xl">event not found</h1>
+        <h1 className="neon-text text-3xl">Event Not Found</h1>
       </div>
     );
   }
@@ -38,6 +39,7 @@ export default async function AdminQueuePage({ params }: AdminQueueProps) {
     .eq("event_id", eventId)
     .order("created_at", { ascending: true });
 
+  // error handling, just set an empty array just in case
   const songList = songError || !songs ? [] : songs;
 
   return (

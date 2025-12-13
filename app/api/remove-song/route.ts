@@ -13,6 +13,7 @@ export async function POST(req: Request) {
       );
     }
 
+    // Delete song
     const { error } = await supabase
       .from("songs")
       .delete()

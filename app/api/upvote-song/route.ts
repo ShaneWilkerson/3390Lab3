@@ -14,7 +14,7 @@ export async function POST(req: Request) {
       );
     }
 
-    //  inset vote (fails if already voted due to unique constraint)
+    //  insert vote (fails if already voted due to unique constraint)
     const { error: voteError } = await supabase
       .from("votes")
       .insert([{ song_id: songId, guest_id: guestId }]);
@@ -24,6 +24,14 @@ export async function POST(req: Request) {
       return NextResponse.json(
         { error: "you already voted for this song" },
         { status: 403 }
+      );
+    }
+
+    // NEW: foreign key error = song no longer exists (host removed it)
+    if (voteError && voteError.code === "23503") {
+      return NextResponse.json(
+        { error: "This song has been removed by the host." },
+        { status: 400 }
       );
     }
 

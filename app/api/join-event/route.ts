@@ -16,7 +16,7 @@ export async function POST(req: Request) {
       );
     }
 
-    // now this finds the event in database
+    // finds event in database
     const { data: event, error: eventError } = await supabase
       .from("events")
       .select("*")
@@ -38,7 +38,7 @@ export async function POST(req: Request) {
       .select()
       .single();
 
-      // if anything goes wrong
+      // more error handling
     if (guestError) {
       return NextResponse.json(
         { error: guestError.message },
@@ -46,7 +46,7 @@ export async function POST(req: Request) {
       );
     }
 
-    // if everything goes right, redirect
+    // if everything goes right, redirect to the event
     return NextResponse.json(
       { eventId: event.id, guestId: guest.id },
       { status: 200 }

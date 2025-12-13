@@ -1,5 +1,5 @@
 "use client";
-// for buttons and updates
+// for buttons and updates, runs on the browswer 
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/app/lib/supabaseClient";
@@ -32,7 +32,8 @@ export default function SongList({
     setSongList(sortSongs(songs));
   }, [songs]);
 
-  // real time updates
+  // real time updates with real time
+  /*
   useEffect(() => {
     const channel = supabase
       .channel("song_updates")
@@ -65,7 +66,7 @@ export default function SongList({
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [eventId]);
+  }, [eventId]);*/
 
 
   // when user clicks upvote
@@ -122,7 +123,8 @@ export default function SongList({
         return (
           <li
             key={song.id}
-            className="flex items-center justify-between bg-slate-900/60 px-4 py-3 rounded-lg border border-slate-800"
+            //  FIXED SPACING BELOW 
+            className="flex items-center justify-between bg-slate-900/60 px-6 py-4 rounded-lg border border-slate-800 gap-4"
           >
             {/* song text and vote count */}
             <span className="text-pink-300">
@@ -136,7 +138,6 @@ export default function SongList({
 
             {/* action buttons */}
             <div className="flex gap-2">
-
               {/* UPVOTE button for joiners */}
               {guestId && (
                 <button
